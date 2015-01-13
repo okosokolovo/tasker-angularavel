@@ -1,0 +1,15 @@
+<fieldset>
+  <div class="form-group">
+    <label for="loginEmail" class="control-label">email</label>
+    <input type="email" name="email" id="loginEmail" ng-model="formObject.email" placeholder="email" required class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="loginPwd" class="control-label">password</label>
+    <input type="password" name="password" id="loginPwd" ng-model="formObject.password" placeholder="password" class="form-control" required>
+  </div>
+
+  <div class="alert alert-danger" ng-show="formErrors.extra">
+    <strong>{{formErrors.extra}}</strong>
+  </div>
+</fieldset>

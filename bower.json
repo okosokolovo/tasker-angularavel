@@ -1,0 +1,25 @@
+{
+  "name": "tasker",
+  "description": "angular con laravel, cosi collaborazione",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "angular": "1.2.24",
+    "ng-file-upload": "~1.6.12",
+    "restangular": "~1.4.0",
+    "angular-xeditable": "~0.1.8",
+    "font-awesome": "~4.2.0",
+    "underscore": "~1.7.0",
+    "modernizr": "~2.8.3",
+    "angular-ui-router": "~0.2.11",
+    "ui-router-extras": "~0.0.10",
+    "angular-sanitize": "1.2.24",
+    "ngstorage": "~0.3.0",
+    "angular-slugify": "~1.0.0",
+    "angular-bootstrap": "~0.11.2"
+  },
+  "resolutions": {
+    "angular": "1.2.24",
+    "angular-sanitize": "1.2.24"
+  }
+}

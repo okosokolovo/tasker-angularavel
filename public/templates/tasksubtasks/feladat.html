@@ -1,0 +1,59 @@
+<div>
+
+  <div ui-view></div>
+
+  <form editable-form name="taskAc"
+        onbeforesave="taskovanje(task)"
+        onaftersave="taskovano({task: task})"
+        oncancel="goback()">
+
+    <div class="gumbi">
+      <span class="editask" ng-click="taskAc.$show(); taskAc.$activate('opis')" ng-show="!taskAc.$visible">edit</span>
+      <span ng-show="taskAc.$visible">
+        <button type="submit" class="btn btn-inverse" ng-disabled="taskAc.$waiting">save</button>
+        <button class="btn" ng-disabled="taskAc.$waiting" ng-click="taskAc.$cancel()">cancel</button>
+      </span>
+    </div>
+      
+    <div>
+      <span class="title">name</span>
+      <span editable-text="task.name" onbeforesave="validacijaimena($data)" e-required>{{task.name}}</span>
+    </div>
+
+    <div>
+      <span class="title">importance</span>
+      <span editable-select="task.importance" e-ng-options="i.val as i.text for i in importancies" e-required>{{task.importance}}</span>
+    </div>
+
+    <div>
+      <span class="title">type</span>
+      <!-- <span editable-select="task.type" e-ng-options="t.type for t in types">{{task.type}}</span> -->
+      <span editable-select="task.type" e-ng-options="t.val as t.type for t in types" e-required>{{task.type}}</span>
+    </div>
+
+    <div>
+      <span class="title">due</span>
+      <!-- <span e-name="due" editable-bsdate="task.due" e-datepicker-popup="dd-MMMM-yyyy" e-required>{{task.due | date:'dd/MM/yyyy'}}</span> -->
+      <span e-name="due" editable-bsdate="task.due" e-datepicker-popup="dd-MMMM-yyyy" e-required>{{(task.due | date:'dd/MM/yyyy') || 'empty'}}</span>
+    </div>
+
+    <div>
+      <span class="title">completed</span>
+      <span editable-checkbox="task.completed" e-title="task completed ?">{{task.completed && "Yes" || "NOT"}}</span>
+    </div>
+
+    <div>
+      <span class="title">description:</span>
+      <span class="itd" e-name="opis" editable-textarea="task.description" e-required>{{task.description}}</span>
+    </div>
+
+    <p class="egyeb" ng-controller="EgyebCtrl">
+      <span>comments</span>
+      <span ng-click="setsubtasks(task.subtasks)">subtasks</span>
+      <span>tags</span>
+      <span>files</span>
+      <span class="back" ng-click="goback()">go back</span>
+    </p>
+    
+  </form>
+</div>

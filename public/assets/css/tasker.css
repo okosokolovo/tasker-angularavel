@@ -1,0 +1,149 @@
+/*! tasker - v - 20141116-0210 */
+.navbar-brand { font-family: 'Faster One', cursive; font-size: 36px; color: #900; }
+
+.nav .active a { font-weight: bold; color: #333; }
+
+.form-register, .form-login {
+  width: 33%;
+  margin: 0 auto;
+}
+
+/* anti ng fouc: */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none;
+}
+
+.user-menu, .zocial { padding-top: 6px; }
+
+.user-menu .dropdown-menu { min-width: 100px; left: -40px; }
+
+#signinButton { margin-left: 9px; margin-top: 7px; }
+
+.wkspc-main { font-size: 90% }
+
+.projekti {
+  color: #005580;
+  background-color: #808000;
+  background-color: rgba(128,128,0,.7);
+}
+
+.izbor-tipa-projekata { color: #C0C0C0; }
+
+.gumbi span:first-of-type, .gumbi a, .egyeb span, .gumica { cursor: pointer; }
+
+.add-task { cursor: pointer; padding: 0 20px; }
+
+.nav .editable-click { border-bottom: none; }
+
+.taskovi { 
+  color: #ffdc00;
+  background-color: #85144b;
+  background-color: rgba(133,20,75,.5);
+}
+
+.tasks-zaglavlje {
+  background-color: #0080FF;
+  background-color: rgba(0,128,255,.5);
+}
+
+.jegy { display: inline-block; margin-right: 5px; }
+.jegyek .jegy { background-color: #800040}
+.jegyek span.jegy:nth-child(odd) { background-color: #408080}
+
+.feladat { 
+  background-color: #00b3b3;
+  background-color: rgba(0,179,179,.8);
+  color: #000;
+}
+
+.feladat .title, .egyeb .back {color: #FFFF00;}
+.feladat .gumbi, .egyeb {margin-top: 8px; margin-bottom: 8px;}
+
+.editask {
+    background-color: #363636;
+    background-image: linear-gradient(to bottom, #444444, #222222);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+.subtaskovi {
+  background-color: #808000;
+  background-color: rgba(128,128,0,.7);
+}
+
+.ggl-butt {width: 24px; height: 16px;}
+.via-zoclogin {display: none;}
+
+/* angular-ui-bootstrap related: */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/*********TB3*/
+/* Extra small devices (phones, less than 768px) */
+.jopajtas {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: block;
+  z-index: -1;
+  -webkit-filter: sepia(100%);
+  -moz-filter: sepia(100%);
+  -ms-filter: sepia(100%);
+  -o-filter: sepia(100%);
+  filter: sepia(100%);
+
+  background: url(../img/tasker1S.jpg) no-repeat center center fixed;
+  background-size:cover;
+}
+/*.asztal { background: url(../img/task1S.jpg) }*/
+
+@media only screen and (orientation: portrait) {
+  .jopajtas {
+    background: url(../img/tasker2S.jpg) no-repeat center center fixed;
+    background-size:cover;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .jopajtas {
+    background: url(../img/tasker1M.jpg) no-repeat center center fixed;
+    background-size:cover;
+  }
+  /*.asztal { background: url(../img/task1M.jpg) }*/
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .jopajtas {
+    background: url(../img/tasker1L.jpg) no-repeat center center fixed;
+    background-size:cover;
+  }
+  /*.asztal { background: url(../img/task1L.jpg) }*/
+}
+/*********TB3*/
+
+@media only screen and (min-width: 1824px), only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation : landscape)  {
+  .jopajtas {
+    background: url(../img/tasker1eredeti.jpg) no-repeat center center fixed;
+    background-size:cover;
+  }
+
+  /*.asztal { background: url(../img/task1eredeti.jpg) }*/
+}
+
+/*********adamkaplan - grid*/
+/* Small screens (default) */
+html { font-size: 100%; }
+/* Medium screens (640px) */
+@media (min-width: 40rem) { 
+  html { font-size: 112%; }
+}
+/* Large screens (1024px) */
+@media (min-width: 64rem) { 
+  html { font-size: 120%; }
+}

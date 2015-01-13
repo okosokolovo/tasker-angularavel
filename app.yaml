@@ -1,0 +1,51 @@
+application: GAE-project-name-here
+version: 1
+runtime: php
+api_version: 1
+
+handlers:
+
+- url: /favicon\.ico
+  static_files: public/favicon.ico
+  upload: public/favicon\.ico
+
+- url: /css
+  static_dir: public/assets/css
+
+- url: /fonts
+  static_dir: public/assets/fonts
+
+- url: /avatar
+  static_dir: public/uploads/usr/avatar
+
+- url: /img
+  static_dir: public/assets/img
+
+- url: /js
+  static_dir: public/assets/js
+
+- url: /templates
+  static_dir: public/templates
+- url: /projects
+  static_dir: public/templates/projects
+- url: /tasksubtasks
+  static_dir: public/templates/tasksubtasks
+- url: /users
+  static_dir: public/templates/users
+
+
+- url: /.*
+  script: public/index.php
+
+env_variables:
+ DEVELOPMENT_DB_HOST: 'localhost'
+ DEVELOPMENT_DB_USERNAME: 'username-here'
+ DEVELOPMENT_DB_PASSWORD: 'password-here'
+ DEVELOPMENT_DB_NAME: 'db-name-here'
+ PRODUCTION_CLOUD_SQL_INSTANCE: '/cloudsql/GAE-project-id-here:instance-name-here'
+ PRODUCTION_DB_NAME: 'gcsql-db-name-here'
+ PRODUCTION_DB_USERNAME: 'root'
+ PRODUCTION_DB_PASSWORD: ''
+ # or:
+ # PRODUCTION_DB_USERNAME: 'gcsql-db-username-here'
+ # PRODUCTION_DB_PASSWORD: 'gcsql-db-user-password-here'

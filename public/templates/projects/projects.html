@@ -1,0 +1,9 @@
+<div>
+  <h3>Projects</h3>
+  <ul>
+    <li ng-repeat="project in projects">
+      <a ui-sref=".tasks({projectId: {{project.id}}})">{{project.name}} - tasks</a>
+      <a ng-click="deleteProject(clientId, project.id)" class="muted">delete</a>
+    </li>
+  </ul>
+</div>

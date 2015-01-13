@@ -1,0 +1,31 @@
+<fieldset>
+  <div class="form-group" ng-class="{error: formErrors.avatar}" ng-controller="UploadCtrl">
+    <label class="control-label" for="editAvatar">avatar</label>
+    <input type="file" id="editAvatar" ng-file-select="onFileSelect($files)" accept="image/*" class="form-control" multiple>
+    <p class="text-info">{{data.avatar}}</p>
+    <span class="help-block" ng-show="formErrors.avatar">{{formErrors.avatar}}</span>
+  </div>
+
+  <div class="form-group" ng-class="{error: formErrors.email}">
+    <label class="control-label" for="editEmail">email</label>
+    <input type="email" id="editEmail" name="email" ng-model="formObject.email" value="formObject.email" class="form-control">
+    <span class="help-block" ng-show="formErrors.email">{{formErrors.email}}</span>
+  </div>
+
+  <div class="form-group" ng-class="{error: formErrors.pwd}">
+    <label class="control-label" for="registerPwd">password</label>
+    <input type="password" id="registerPwd" name="password" ng-model="formObject.pwd" placeholder="enter (new) password" class="form-control" required>
+    <span class="help-block" ng-show="formErrors.pwd">{{formErrors.pwd}}</span>
+  </div>
+
+  <div class="form-group" ng-class="{error: formErrors.pwd_confirm}">
+    <label class="control-label" for="registerPwdConfirm">password confirmation</label>
+    <input class="warning" id="registerPwdConfirm" name="pwd_confirm" type="password" ng-model="formObject.pwd_confirm" placeholder="repeat (new) password" class="form-control" required>
+    <span class="help-block" ng-show="formErrors.pwd_confirm">{{formErrors.pwd_confirm}}</span>
+  </div>
+
+  <div class="alert alert-danger" ng-show="formErrors.extra">
+     <strong>{{formErrors.extra}}</strong>
+  </div>
+
+</fieldset>
