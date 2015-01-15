@@ -77,6 +77,18 @@ return array(
 			'prefix'   => '',
 		),
 
+		///original///
+		// 'mysql' => array(
+		// 	'driver'    => 'mysql',
+		// 	'host'      => 'localhost',
+		// 	'database'  => 'mysql-db-name-here',
+		// 	'username'  => 'mysql-db-username-here',
+		// 	'password'  => 'mysql-db-user-password-here',
+		// 	'charset'   => 'utf8',
+		// 	'collation' => 'utf8_unicode_ci',
+		// 	'prefix'    => '',
+		// ),
+		//////
 		'mysql' => $mysql_array,
 
 		'pgsql' => array(

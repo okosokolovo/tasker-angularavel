@@ -133,7 +133,7 @@ return array(
 	*/
 
 	// 'manifest' => storage_path().'/meta',
-	 'manifest' => 'gs://tasker-angularavel.appspot.com' .'/meta',		# GAE
+	 'manifest' => 'gs://GAE-app-GCS-bucket-name-here' .'/meta',		# GAE
 
 	/*
 	|--------------------------------------------------------------------------
