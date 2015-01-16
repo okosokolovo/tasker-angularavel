@@ -6,5 +6,5 @@ composer.lock   # it is recommended to remove/comment out, after project creatio
 .env.php
 .DS_Store
 Thumbs.db
-/node_modules
-/bwr
+#/node_modules
+#/bwr
