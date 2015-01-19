@@ -32,6 +32,10 @@ For the completion of front-end app code (`/tasker` folder) and for being able t
 
 #### Remarks
 
-This work is in progress. During experimentation some parts are intentionally left inconsistent or with mixed techniques (e.g. validation). All suggestions are welcome. 
+This work is in progress. During experimentation some parts are intentionally left inconsistent or with mixed techniques (e.g. validation). 
+
+Google+ sign-in button renders properly in Chrome browser. 
+
+All suggestions are welcome. 
 
 Special credit for mentorship goes to [Maxa](http://www.makonda.com/).
