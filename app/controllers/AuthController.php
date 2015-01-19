@@ -48,26 +48,45 @@ class AuthController extends BaseController {
         $user->password = $temp_pwd;
         $user->password_confirmation = $temp_pwd;
         $user->confirmed = 1;
-        $user->save();
+        if ($user->save()) {
+          $profile = new Profile;
+          $profile->uid = $uid;
+          $profile->provider = 'google';
+          if ($user->profiles()->save($profile))
+          {
+            $profile = Profile::whereUid($uid)->first();
+            $user = $profile->juzer;
+            Auth::login($user);
+            $ggluser = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+            return Response::json($ggluser);
+          }
+        }
         // send temp pwd, username by mail; instruct to update tasker profile...
+      } else {
+        $profile = new Profile;
+        $profile->uid = $uid;
+        $profile->provider = 'google';
+        if ($user->profiles()->save($profile))
+        {
+          $profile = Profile::whereUid($uid)->first();
+          $user = $profile->juzer;
+          Auth::login($user);
+          $ggluser = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+          return Response::json($ggluser);
+        }
       }
-
-      $profile = new Profile;
-      $profile->uid = $uid;
-      $profile->provider = 'google';
-      $profile = $user->profiles()->save($profile); // attach model
-
+    } else {
+      $profile->access_token = Input::get('token');
+      //$profile->save();
+      if ($profile->save()) {
+        $user = $profile->juzer;
+        Auth::login($user);
+        $ggluser = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+        // Clockwork::endEvent('ggl.login');
+        // Clockwork::info($profile);
+        return Response::json($ggluser);
+      }
     }
-    $profile->access_token = Input::get('token');
-    $profile->save();
-
-    $user = $profile->juzer;   // dyn prop
-    
-    Auth::login($user);
-    $ggluser = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
-    // Clockwork::endEvent('ggl.login');
-    // Clockwork::info($profile);
-    return Response::json($ggluser);    // success ('Logged in with Google!')
   }
 
 
@@ -104,7 +123,6 @@ class AuthController extends BaseController {
     $profile = Profile::whereUid($uid)->first();
     if ( empty($profile) )
     {
-
       $user = User::whereEmail($me['email'])->first();
       if ( empty($user) )
       {
@@ -115,26 +133,46 @@ class AuthController extends BaseController {
         $user->password = $temp_pwd;
         $user->password_confirmation = $temp_pwd;
         $user->confirmed = 1;
-        $user->save();
-        
+        if ($user->save())
+        {
+          $profile = new Profile;
+          $profile->uid = $uid;
+          $profile->provider = 'facebook';
+          if ($user->profiles()->save($profile))
+          {
+            $profile = Profile::whereUid($uid)->first();
+            $user = $profile->juzer;
+            Auth::login($user);
+            $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+            $brutto_user->zoc = 'fb';
+            return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));
+          }
+        }
         // send temp pwd, username by mail; instruct to update tasker profile...
+      } else {
+        $profile = new Profile;
+        $profile->uid = $uid;
+        $profile->provider = 'facebook';
+        if ($user->profiles()->save($profile))
+        {
+          $profile = Profile::whereUid($uid)->first();
+          $user = $profile->juzer;
+          Auth::login($user);
+          $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+          $brutto_user->zoc = 'fb';
+          return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));
+        }
       }
-      
-      $profile = new Profile;
-      $profile->uid = $uid;
-      $profile->provider = 'facebook';
-      $profile = $user->profiles()->save($profile); // attach model
-
+    } else {
+      $profile->access_token = $facebook->getAccessToken();
+      if ($profile->save()) {
+        $user = $profile->juzer;
+        Auth::login($user);
+        $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+        $brutto_user->zoc = 'fb';
+        return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));  
+      }
     }
-    $profile->access_token = $facebook->getAccessToken();
-    $profile->save();
-
-    $user = $profile->juzer;   // dyn prop
-    Auth::login($user);
-    $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
-
-    $brutto_user->zoc = 'fb';
-    return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));    // success
   }
 
 
@@ -244,7 +282,6 @@ class AuthController extends BaseController {
       {
         $mejl = str_random(10).'@temp.com';
         $user = User::whereEmail($mejl)->first();
-        
         if ( empty($user) )
         {
           $temp_pwd = str_random(20);
@@ -254,28 +291,47 @@ class AuthController extends BaseController {
           $user->password = $temp_pwd;
           $user->password_confirmation = $temp_pwd;
           $user->confirmed = 1;
-          $user->save();
+          if ($user->save()) {
+            $profile = new Profile;
+            $profile->uid = $uid;
+            $profile->provider = 'twitter';
+            if ($user->profiles()->save($profile)) {
+              $profile = Profile::whereUid($uid)->first();
+              $user = $profile->juzer;
+              Auth::login($user);
+              $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+              $brutto_user->zoc = 'twt';
+              // Clockwork::endEvent('twt.login');
+              return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));
+            }
+          }
           // user profile update warning...
+        } else {
+          $profile = new Profile;
+          $profile->uid = $uid;
+          $profile->provider = 'twitter';
+          if ($user->profiles()->save($profile)) {
+            $profile = Profile::whereUid($uid)->first();
+            $user = $profile->juzer;
+            Auth::login($user);
+            $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+            $brutto_user->zoc = 'twt';
+            // Clockwork::endEvent('twt.login');
+            return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));
+          }
         }
-
-        $profil = new Profile();
-        $profil->uid = $uid;
-        $profil->provider = 'twitter';
-        $profile = $user->profiles()->save($profil);
+      } else {
+        $profile->access_token = $to;
+        $profile->access_token_secret = $tos;
+        if($profile->save()) {
+          $user = $profile->juzer;
+          Auth::login($user);
+          $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
+          $brutto_user->zoc = 'twt';
+          // Clockwork::endEvent('twt.login');
+          return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));  
+        }
       }
-      $profile->access_token = $to;
-      $profile->access_token_secret = $tos;
-      $profile->save();
-
-      $user = $profile->juzer;    // dyn prop
-      Auth::login($user);
-      $brutto_user = User::with('clients', 'projects', 'tasks.tags', 'subtasks', 'roles', 'profiles')->where('id', Auth::user()->id)->first();
-      $brutto_user->zoc = 'twt';
-
-      // Clockwork::endEvent('twt.login');
-      // Clockwork::info($profile);
-      // Clockwork::info($user);
-      return View::make('t3r')->with('brutto_user', json_encode($brutto_user->toArray()));    // success
     }
     else
     {
