@@ -143,7 +143,8 @@ class AuthController extends BaseController {
     // Clockwork::startEvent('git.login', 'git login');
 
     $code = Input::get('code');
-    $git = OAuth::consumer('GitHub');
+    // $git = OAuth::consumer('GitHub');
+    $git = Artdarek\OAuth\Facade\OAuth::consumer('GitHub');
     if ( !empty($code) )
     {
       $token = $git->requestAccessToken($code);
@@ -214,7 +215,8 @@ class AuthController extends BaseController {
 
     $ot = Input::get('oauth_token');
     $ov = Input::get('oauth_verifier');
-    $twt = OAuth::consumer('Twitter');
+    // $twt = OAuth::consumer('Twitter');
+    $twt = Artdarek\OAuth\Facade\OAuth::consumer('Twitter');
     // Clockwork::info($ot);
     // Clockwork::info($ov);
     // Clockwork::info($twt);
