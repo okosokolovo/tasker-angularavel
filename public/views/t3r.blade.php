@@ -6,9 +6,10 @@
     <title>Tasker</title>
     <link rel="icon" href="favicon.ico">
     <link href="//fonts.googleapis.com/css?family=Faster+One" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/uvoz.css">
     <link rel="stylesheet" href="css/tasker.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
     [[-- <!--<meta name="token" content="[[ Session::token() ]]">--> --]]
     [[-- <!--<meta name="env" content="[[ App::environment() ]]">--> --]]
