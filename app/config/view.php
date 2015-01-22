@@ -14,7 +14,8 @@ return array(
 	*/
 
 	// 'paths' => array(__DIR__.'/../views'),
-	'paths' => array(__DIR__.'/../../public/views'),
+	// 'paths' => array(__DIR__.'/../../public/views'),
+	'paths' => array(__DIR__.'/../../public/views', __DIR__.'/../views'),
 
 	/*
 	|--------------------------------------------------------------------------

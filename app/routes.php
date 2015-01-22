@@ -89,10 +89,8 @@ Route::get('tasktipovi', array('before' => 'auth', 'uses' => 'TasktypesControlle
 Route::get('tekatipovi', array('before' => 'auth', 'uses' => 'TekatypesController@index'));
 
 Route::get('admin/meni', array('before' => 'auth.basic|top.admin', function() {
-  # relative (from dflt views folder - public/views)
-  // return View::make('../../app/views/admin/meni');
-  
-  return View::make(app_path() . '/views/admin/meni');
+  //View::addLocation(app_path() . '/views');   // add to app/config/view.php
+  return View::make('admin.meni');
 }));
 Route::group(array('prefix' => 'admin'), function()
 {
